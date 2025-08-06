@@ -78,8 +78,9 @@ class ASVspoof2019Dataset(BaseDataset):
         protocol_filename = (
             f"ASVspoof2019.LA.cm.{part}.{'trn' if part == 'train' else 'trl'}.txt"
         )
+        
         protocol_path = (
-            data_path / "LA" / "ASVspoof2019_LA_cm_protocols" / protocol_filename
+            data_path / "LA" / "LA" / "ASVspoof2019_LA_cm_protocols" / protocol_filename
         )
 
         flac_path = data_path / "LA" / f"ASVspoof2019_LA_{part}" / "flac"
