@@ -57,7 +57,7 @@ class PadAndTrimTransform:
 
 class ASVspoof2019Dataset(BaseDataset):
     def __init__(self, part: str):
-        data_path = ROOT_PATH / "data"
+        data_path = ROOT_PATH
 
         index = self._create_index(data_path, part)
 
@@ -78,7 +78,7 @@ class ASVspoof2019Dataset(BaseDataset):
         protocol_filename = (
             f"ASVspoof2019.LA.cm.{part}.{'trn' if part == 'train' else 'trl'}.txt"
         )
-        
+
         protocol_path = (
             data_path / "LA" / "LA" / "ASVspoof2019_LA_cm_protocols" / protocol_filename
         )
