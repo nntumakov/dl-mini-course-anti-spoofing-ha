@@ -1,6 +1,6 @@
 train: 
-  - _target_: src.metrics.eer_metric.EERMetric
+  - _target_: src.metrics.EERMetric
     name: "EER"
 inference:
-  - _target_: src.metrics.eer_metric.EERMetric
+  - _target_: src.metrics.EERMetric
     name: "EER"
