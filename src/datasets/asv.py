@@ -57,7 +57,7 @@ class PadAndTrimTransform:
 
 class ASVspoof2019Dataset(BaseDataset):
     def __init__(self, part: str):
-        data_path = ROOT_PATH
+        data_path = ROOT_PATH / "input"
 
         index = self._create_index(data_path, part)
 
