@@ -1,5 +1,5 @@
 _target_: src.logger.WandBWriter
-project_name: "dl-mini-course-anti-spoofing-ha"
+project_name: "dl-mini-course-anti-spoofing-ha-2"
 entity: null
 run_name: "training"
 mode: "online"
