@@ -113,3 +113,4 @@ outputs/
 .vscode/
 .idea/
 __MACOSX/
+.DS_Store

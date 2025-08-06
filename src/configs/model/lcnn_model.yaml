@@ -1,0 +1,4 @@
+_target_: src.model.lcnn_model.LCNNModel
+in_channels: 1
+num_classes: 2
+dropout_prob: 0.75

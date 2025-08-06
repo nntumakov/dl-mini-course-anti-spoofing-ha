@@ -1,0 +1,6 @@
+train:
+  _target_: src.datasets.asv.TrainASVspoof2019Dataset
+dev:
+  _target_: src.datasets.asv.DevASVspoof2019Dataset
+test:
+  _target_: src.datasets.asv.TestASVspoof2019Dataset

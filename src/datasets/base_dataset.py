@@ -97,17 +97,21 @@ class BaseDataset(Dataset):
                 (a single dataset element) (possibly transformed via
                 instance transform).
         """
+
+        prev_transform_name = "data_object"
+
         if self.instance_transforms is not None:
             for transform_name in self.instance_transforms.keys():
                 instance_data[transform_name] = self.instance_transforms[
                     transform_name
-                ](instance_data[transform_name])
+                ](instance_data[prev_transform_name])
+                prev_transform_name = transform_name
         return instance_data
 
     @staticmethod
     def _filter_records_from_dataset(
         index: list,
-    ) -> list:
+    ):
         """
         Filter some of the elements from the dataset depending on
         some condition.
@@ -140,7 +144,7 @@ class BaseDataset(Dataset):
         """
         for entry in index:
             assert "path" in entry, (
-                "Each dataset item should include field 'path'" " - path to audio file."
+                "Each dataset item should include field 'path' - path to audio file."
             )
             assert "label" in entry, (
                 "Each dataset item should include field 'label'"
