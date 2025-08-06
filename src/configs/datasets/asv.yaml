@@ -1,6 +1,6 @@
 train:
-  _target_: src.datasets.asv.TrainASVspoof2019Dataset
+  _target_: src.datasets.TrainASVspoof2019Dataset
 dev:
-  _target_: src.datasets.asv.DevASVspoof2019Dataset
+  _target_: src.datasets.DevASVspoof2019Dataset
 test:
-  _target_: src.datasets.asv.TestASVspoof2019Dataset
+  _target_: src.datasets.TestASVspoof2019Dataset
