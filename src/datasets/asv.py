@@ -57,7 +57,7 @@ class PadAndTrimTransform:
 
 class ASVspoof2019Dataset(BaseDataset):
     def __init__(self, part: str):
-        data_path = ROOT_PATH.parent / "input" / "asvpoof-2019-dataset"
+        data_path = ROOT_PATH.parent.parent / "input" / "asvpoof-2019-dataset"
 
         index = self._create_index(data_path, part)
 
