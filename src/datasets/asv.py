@@ -83,7 +83,7 @@ class ASVspoof2019Dataset(BaseDataset):
             data_path / "LA" / "LA" / "ASVspoof2019_LA_cm_protocols" / protocol_filename
         )
 
-        flac_path = data_path / "LA" / f"ASVspoof2019_LA_{part}" / "flac"
+        flac_path = data_path / "LA" / "LA" / f"ASVspoof2019_LA_{part}" / "flac"
 
         index = []
 
