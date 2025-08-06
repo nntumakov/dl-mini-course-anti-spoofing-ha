@@ -58,68 +58,81 @@ class PadAndTrimTransform:
 
 class ASVspoof2019Dataset(BaseDataset):
     def __init__(self, part: str, *args, **kwargs):
-        data_path = ROOT_PATH.parent.parent / "input" / "asvspoof-2019-dataset"
-        
+        data_path = ROOT_PATH.parent.parent / "input" / "asvpoof-2019-dataset"
+
         initial_index = self._create_index(data_path, part)
-        
+
         stft_transform = STFTTransform(
             n_fft=WINDOW_SIZE,
             hop_length=int(WINDOW_SIZE / 4),
             win_length=WINDOW_SIZE,
         )
         pad_trim_transform = PadAndTrimTransform(max_len=MAX_LEN)
-        
+
         processed_index = []
         print(f"Preprocessing and caching '{part}' dataset...")
         for entry in tqdm(initial_index):
             waveform, _ = torchaudio.load(entry["path"])
             stft_data = stft_transform(waveform)
             final_data = pad_trim_transform(stft_data)
-                
-            processed_index.append({
-                "data_object": final_data.unsqueeze(0).unsqueeze(0),
-                "label": entry["label"]
-            })
 
-        super().__init__(index=processed_index, instance_transforms=None, *args, **kwargs)
+            processed_index.append(
+                {
+                    "data_object": final_data.unsqueeze(0).unsqueeze(0),
+                    "label": entry["label"],
+                }
+            )
+
+        super().__init__(
+            index=processed_index, instance_transforms=None, *args, **kwargs
+        )
 
     def __getitem__(self, ind):
         data_dict = self._index[ind]
         return {
             "data_object": data_dict["data_object"],
-            "label": torch.tensor(data_dict["label"], dtype=torch.long)
+            "label": torch.tensor(data_dict["label"], dtype=torch.long),
         }
 
     def _create_index(self, data_path: Path, part: str) -> list:
         protocol_filename = (
             f"ASVspoof2019.LA.cm.{part}.{'trn' if part == 'train' else 'trl'}.txt"
         )
+
         protocol_path = (
             data_path / "LA" / "LA" / "ASVspoof2019_LA_cm_protocols" / protocol_filename
         )
+
         flac_path = data_path / "LA" / "LA" / f"ASVspoof2019_LA_{part}" / "flac"
 
         index = []
+
         with open(protocol_path, "r") as f:
             for line in f:
                 parts = line.strip().split()
-                if len(parts) >= 5:
-                    _, obj_id, _, _, label = parts
-                    file_path = flac_path / f"{obj_id}.flac"
-                    if file_path.exists():
-                        index.append({
-                            "path": file_path,
-                            "label": 1 if label == "bonafide" else 0,
-                        })
+                _, obj_id, _, _, label = parts
+
+                file_path = flac_path / f"{obj_id}.flac"
+
+                index.append(
+                    {
+                        "path": file_path,
+                        "label": 1 if label == "bonafide" else 0,
+                    }
+                )
+
         return index
+
 
 class TrainASVspoof2019Dataset(ASVspoof2019Dataset):
     def __init__(self, *args, **kwargs):
         super().__init__(part="train", *args, **kwargs)
 
+
 class DevASVspoof2019Dataset(ASVspoof2019Dataset):
     def __init__(self, *args, **kwargs):
         super().__init__(part="dev", *args, **kwargs)
+
 
 class TestASVspoof2019Dataset(ASVspoof2019Dataset):
     def __init__(self, *args, **kwargs):
