@@ -21,7 +21,7 @@ loss_function:
   _target_: src.loss.asv.CrossEntropyLoss
 
 trainer:
-  log_step: 50
+  log_step: 25380
   n_epochs: 20
   epoch_len: 25380
   device_tensors: ["data_object", "labels"]
