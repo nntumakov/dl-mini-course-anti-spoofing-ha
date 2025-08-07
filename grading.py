@@ -3,7 +3,7 @@ import csv
 import numpy as np
 from copy import deepcopy
 
-from .calculate_eer import compute_eer
+from src.metrics.eer_metric import compute_eer
 
 # --- Paths ---
 BASE_DIR = "kaggle/working/dl-mini-course-anti-spoofing-ha/"
