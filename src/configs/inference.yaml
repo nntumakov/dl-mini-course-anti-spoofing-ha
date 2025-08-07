@@ -9,6 +9,6 @@ defaults:
 inferencer:
   device_tensors: ["data_object", "labels"] # which tensors should be on device (ex. GPU)
   device: auto # device name or "auto"
-  save_path: "students_solutions/nntumakov.csv" # any name here, can be a dataset name
+  save_path: "kaggle/working/dl-mini-course-anti-spoofing-ha/students_solutions/nntumakov.csv" # any name here, can be a dataset name
   seed: 1
-  from_pretrained: "saved/model_best.pth" # path to the pretrained model
+  from_pretrained: "kaggle/working/dl-mini-course-anti-spoofing-ha/saved/training/model_best.pth" # path to the pretrained model

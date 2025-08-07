@@ -22,9 +22,9 @@ loss_function:
 
 trainer:
   log_step: 500
-  n_epochs: 2
-  # epoch_len: 25380
-  epoch_len: 500
+  n_epochs: 5
+  epoch_len: 25380
+  # epoch_len: 500
   device_tensors: ["data_object", "labels"]
   resume_from: null
   device: auto
