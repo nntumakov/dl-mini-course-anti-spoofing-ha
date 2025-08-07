@@ -14,20 +14,21 @@ optimizer:
 
 lr_scheduler:
   _target_: torch.optim.lr_scheduler.StepLR
-  gamma: 0.9
+  gamma: 0.75
   step_size: ${trainer.epoch_len}
 
 loss_function:
   _target_: src.loss.asv.CrossEntropyLoss
 
 trainer:
-  log_step: 25380
-  n_epochs: 20
-  epoch_len: 25380
+  log_step: 500
+  n_epochs: 2
+  # epoch_len: 25380
+  epoch_len: 500
   device_tensors: ["data_object", "labels"]
   resume_from: null
   device: auto
-  override: True
+  override: False
   monitor: "min test_EER"
   save_period: 1
   early_stop: ${trainer.n_epochs}

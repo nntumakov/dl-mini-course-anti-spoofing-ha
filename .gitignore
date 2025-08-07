@@ -114,3 +114,4 @@ outputs/
 .idea/
 __MACOSX/
 .DS_Store
+.history
