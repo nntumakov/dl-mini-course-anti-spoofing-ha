@@ -18,7 +18,7 @@ lr_scheduler:
   step_size: ${trainer.epoch_len}
 
 loss_function:
-  _target_: src.loss.asv.AngularSoftmaxLoss
+  _target_: src.loss.asv.CrossEntropyLoss
 
 trainer:
   log_step: 500
