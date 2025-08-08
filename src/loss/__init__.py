@@ -1,1 +1,1 @@
-from src.loss.asv import CrossEntropyLoss, AngularSoftmaxLoss
+from src.loss.asv import CrossEntropyLoss
