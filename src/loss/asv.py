@@ -16,7 +16,7 @@ class CrossEntropyLoss(nn.Module):
         return {"loss": self.loss(logits, labels)}
 
 
-# class AngularSoftmaxLoss(nn.Module):
+class AngularSoftmaxLoss(nn.Module):
     def __init__(self, gamma=0.0, m=4, s=30.0):
         super().__init__()
         self.gamma = gamma
